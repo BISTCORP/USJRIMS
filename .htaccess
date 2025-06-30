@@ -1,0 +1,13 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Hide .php extension (optional, for pretty URLs)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([a-zA-Z0-9_-]+)$ $1.php [L]
+
+# Route all requests except index.php through index.php
+RewriteCond %{REQUEST_URI} !^/index\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
